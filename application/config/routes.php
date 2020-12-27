@@ -57,6 +57,8 @@ $route['add/income'] = 'admin/addIncome';
 $route['add/expense'] = 'admin/addExpense';
 $route['calculations'] = 'admin/calculations';
 
+$route['edit/income'] = 'admin/editIncome';
+
 $route['register/user'] = 'user/store_user';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

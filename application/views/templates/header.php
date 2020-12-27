@@ -67,11 +67,11 @@ if( $this->session->userdata('islogin') == "Logged In"){
       <ul class="app-menu">
         <li><a class="app-menu__item" href="<?= base_url()?>dash"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
 
-        <li><a class="app-menu__item" href="<?= base_url()?>add/income"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Add Income</span></a></li>
+        <li><a class="app-menu__item" href="<?= base_url()?>add/income"><i class="app-menu__icon fa fa-money"></i><span class="app-menu__label">Add Income</span></a></li>
 
-        <li><a class="app-menu__item" href="<?= base_url()?>add/expense"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Add Expense</span></a></li>
+        <li><a class="app-menu__item" href="<?= base_url()?>add/expense"><i class="app-menu__icon fa fa-money"></i><span class="app-menu__label">Add Expense</span></a></li>
 
-        <li><a class="app-menu__item" href="<?= base_url()?>calculations"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Calculations</span></a></li>
+        <li><a class="app-menu__item" href="<?= base_url()?>calculations"><i class="app-menu__icon fa fa-credit-card"></i><span class="app-menu__label">Calculations</span></a></li>
         
       </ul>
     </aside>

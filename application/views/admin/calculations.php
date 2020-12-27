@@ -25,14 +25,14 @@
           <div class="tile">
             <h3 class="tile-title"><?= $title ?></h3>
             <table class="table table-hover">
-              <thead>
+              <thead class="thead-dark">
                 <tr>
                   <th>#</th>
                   <th>Date</th>
                   <th>Income</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody >
                 <?php $k = 1;$sum_income = 0;
                 if(isset($income) ):
                 foreach ($income as $inc) { 
@@ -59,7 +59,7 @@
             </table>
 
             <table class="table table-hover">
-              <thead>
+              <thead class="thead-dark">
                 <tr>
                   <th>#</th>
                   <th>Date</th>

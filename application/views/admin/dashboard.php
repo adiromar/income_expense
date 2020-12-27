@@ -30,7 +30,7 @@
 <?php endif; ?>
 
       </div>
-      
+
       <div class="row">
         <div class="col-md-12">
           <div class="tile">
@@ -46,6 +46,7 @@
                   <th>#</th>
                   <th>Date</th>
                   <th>Income</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -57,6 +58,10 @@
                   <td><?= $k ?></td>
                   <td><?= $inc->date ?></td>
                   <td><?= $inc->income ?></td>
+                  <td>
+                    <a href="<?= base_url()?>edit/income/<?= $inc->id?>" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i></a>
+                    <a href="" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                  </td>
                 </tr>
                 <?php $k++; } ?>
 
@@ -75,6 +80,7 @@
                   <th>#</th>
                   <th>Date</th>
                   <th>Expense</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -86,6 +92,10 @@
                   <td><?= $l ?></td>
                   <td><?= $inc->date ?></td>
                   <td><?= $inc->expenses ?></td>
+                  <td>
+                    <a href="" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i></a>
+                    <a href="" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                  </td>
                 </tr>
                 <?php $l++; } ?>
 
