@@ -41,11 +41,23 @@ class Admin extends CI_Controller {
 
 	public function editIncome(){
 		$data['title'] = 'Edit Income';
-		// $tid = $_POST['id'];  
-		echo "hello";die;
-		$data['income'] = $this->db->get_where('income', ['id', $tid])->result();
+		$tid = $this->uri->segment(3);
+		$data['tid'] = $tid;
+		$data['income'] = $this->db->get_where('income', ['id' => $tid])->result();
+
 		$this->load->view('templates/header');
 		$this->load->view('admin/editIncome', $data);
+		$this->load->view('templates/footer');
+	}
+
+	public function editExpenses(){
+		$data['title'] = 'Edit expenes';
+		$tid = $this->uri->segment(3);
+		$data['tid'] = $tid;
+		$data['expenses'] = $this->db->get_where('expenses', ['id' => $tid])->result();
+
+		$this->load->view('templates/header');
+		$this->load->view('admin/editExpense', $data);
 		$this->load->view('templates/footer');
 	}
 
@@ -131,6 +143,58 @@ class Admin extends CI_Controller {
 		$this->load->view('templates/header');
 		$this->load->view('admin/calculations', $data);
 		$this->load->view('templates/footer');
+	}
+
+	public function update_income(){
+		// print_r($_POST);die;;
+		$user_id = $this->session->userdata('user_id');
+
+		if(isset($_POST['btnsubmit'])){
+			$date = $this->input->post("date");
+			$income = $this->input->post("income");
+			$tid = $this->input->post("id");
+			
+			$data = array(
+				'date' => $date,
+				'income' => $income,
+			);
+			$ins = $this->db->where('id', $tid);
+				$this->db->update('income', $data);
+
+			if($ins){
+				$this->session->set_flashdata('success', 'Successfully Updated Income Details');
+				redirect('/dash');
+			}else{
+				$this->session->set_flashdata('error', 'Error! Please Try Again');
+				redirect('/dash');
+			}
+		}
+	}
+
+	public function update_expenses(){
+		// print_r($_POST);die;;
+		$user_id = $this->session->userdata('user_id');
+
+		if(isset($_POST['btnsubmit'])){
+			$date = $this->input->post("date");
+			$expenses = $this->input->post("expenses");
+			$tid = $this->input->post("id");
+			
+			$data = array(
+				'date' => $date,
+				'expenses' => $expenses,
+			);
+			$ins = $this->db->where('id', $tid);
+				$this->db->update('expenses', $data);
+
+			if($ins){
+				$this->session->set_flashdata('success', 'Successfully Updated Expenses Details');
+				redirect('/dash');
+			}else{
+				$this->session->set_flashdata('error', 'Error! Please Try Again');
+				redirect('/dash');
+			}
+		}
 	}
 
 	public function delete(){

@@ -32,10 +32,10 @@
       </div>
 
 <?php
-// print_r($income);
-if($income){
-  $date = $income[0]->date;
-  $income = $income[0]->income;
+
+if($expenses){
+  $date = $expenses[0]->date;
+  $income = $expenses[0]->expenses;
 }
 
 ?>
@@ -49,14 +49,14 @@ if($income){
             <div class="row">
               <div class="col-md-12 col-12">
           <div class="">
-            <h3 class="tile-title">Update Income Form</h3>
+            <h3 class="tile-title">Update Expenses Form</h3>
             <div class="tile-body">
 
               <?php echo validation_errors(); ?>
 
-              <?php if($income): ?>
+              <?php if($expenses): ?>
               <?php $attributes = array('class' => 'login-form', 'id' => 'myform');
-              echo form_open('admin/update_income', $attributes); ?>
+              echo form_open('admin/update_expenses', $attributes); ?>
 
               <div class="form-group">
                   <label class="control-label">Date</label>
@@ -64,14 +64,14 @@ if($income){
                 </div>
                 
                 <div class="form-group">
-                  <label class="control-label">Income</label>
-                  <input type="number" name="income" step="0.10" value="<?= $income ?>" class="form-control" required>
+                  <label class="control-label">Expenses</label>
+                  <input type="number" name="expenses" step="0.10" value="<?= $income ?>" class="form-control" required>
                 </div>
               
               <div class="tile-footer">
                 <input type="hidden" name="id" value="<?= $tid ?>">
 
-              <button type="submit" name="btnsubmit" value="go" class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Update Income</button>
+              <button type="submit" name="btnsubmit" value="go" class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Update Expenses</button>
             </div>
               <?php echo form_close(); ?>
               <?php else: ?>

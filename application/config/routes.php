@@ -58,6 +58,7 @@ $route['add/expense'] = 'admin/addExpense';
 $route['calculations'] = 'admin/calculations';
 
 $route['edit/income'] = 'admin/editIncome';
+$route['edit/expenses'] = 'admin/editExpenses';
 
 $route['register/user'] = 'user/store_user';
 $route['404_override'] = '';
