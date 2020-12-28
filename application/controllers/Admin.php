@@ -124,12 +124,20 @@ class Admin extends CI_Controller {
 
 			$data['title'] = $date1 . ' - '. $date2;
 			$this->load->view('admin/fetch', $data);
-		}elseif(empty($date1) || empty($date2)){
-			$data['income'] = $this->admin_model->get_savings_date_range_single('income', $date1, $date2, $user_id);
-			$data['expenses'] = $this->admin_model->get_savings_date_range_single('expenses', $date1, $date2, $user_id);
+		}elseif(!empty($date1) && empty($date2)){
+			$data['income'] = $this->admin_model->get_savings_date_range_date1('income', $date1, $user_id);
+			$data['expenses'] = $this->admin_model->get_savings_date_range_date1('expenses', $date1, $user_id);
 
-			$data['title'] = $date1 . ' - '. $date2;
+			$data['title'] = 'Result Data greater than ' .$date1;
 			$this->load->view('admin/fetch', $data);
+		}elseif(!empty($date2) && empty($date1)){
+			$data['income'] = $this->admin_model->get_savings_date_range_date2('income', $date2, $user_id);
+			$data['expenses'] = $this->admin_model->get_savings_date_range_date2('expenses', $date2, $user_id);
+
+			$data['title'] = 'Result Data less than ' .$date2;
+			$this->load->view('admin/fetch', $data);
+		}elseif(empty($date1) || empty($date2)){
+			echo "Select Both Parameters.";die;
 		}
 		// print_r($data);
 	}
