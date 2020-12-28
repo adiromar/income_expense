@@ -60,7 +60,7 @@
                   <td><?= $inc->income ?></td>
                   <td>
                     <a href="<?= base_url()?>admin/editIncome/<?= $inc->id?>" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i></a>
-                    <a href="" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                    <a href="#" class="btn btn-danger btn-sm demoSwal" data-id="<?= $inc->id ?>" data-tbl="income"><i class="fa fa-trash"></i></a>
                   </td>
                 </tr>
                 <?php $k++; } ?>
@@ -103,6 +103,8 @@
             </table>
           </div>
         </div>
+
+        <div class="response">ss</div>
         </div>
 
           </div>

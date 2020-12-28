@@ -15,8 +15,8 @@ class Admin extends CI_Controller {
 		$data['title'] = 'Dashboard';
 		$user_id = $this->session->userdata('user_id');
 
-		$data['income'] = $this->db->where('user_id', $user_id)->get('income')->result();
-		$data['expenses'] = $this->db->where('user_id', $user_id)->get('expenses')->result();
+		$data['income'] = $this->db->where('user_id', $user_id)->order_by('date', 'desc')->get('income')->result();
+		$data['expenses'] = $this->db->where('user_id', $user_id)->order_by('date', 'desc')->get('expenses')->result();
 
 		$this->load->view('templates/header');
 		$this->load->view('admin/dashboard', $data);
@@ -110,6 +110,30 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	public function saving_calculator(){
+		error_reporting(0);
+		$user_id = $this->session->userdata('user_id');
+		$date1 = $_POST['date1'];
+		$date2 = $_POST['date2'];
+		$data['date1'] = $date1;
+		$data['date2'] = $date2;
+
+		if(!empty($date1) && (!empty($date2)) ){
+			$data['income'] = $this->admin_model->get_savings_date_range('income', $date1, $date2, $user_id);
+			$data['expenses'] = $this->admin_model->get_savings_date_range('expenses', $date1, $date2, $user_id);
+
+			$data['title'] = $date1 . ' - '. $date2;
+			$this->load->view('admin/fetch', $data);
+		}elseif(empty($date1) || empty($date2)){
+			$data['income'] = $this->admin_model->get_savings_date_range_single('income', $date1, $date2, $user_id);
+			$data['expenses'] = $this->admin_model->get_savings_date_range_single('expenses', $date1, $date2, $user_id);
+
+			$data['title'] = $date1 . ' - '. $date2;
+			$this->load->view('admin/fetch', $data);
+		}
+		// print_r($data);
+	}
+
 	public function calculations(){
 		
 		$date = date("Y-m-d");
@@ -127,11 +151,11 @@ class Admin extends CI_Controller {
 			$data['income'] = $this->db->where('date >=', $week)->where('user_id', $user_id)->get('income')->result();
 			$data['expenses'] = $this->db->where('date >=', $week)->where('user_id', $user_id)->get('expenses')->result();
 		}elseif($_GET['filter'] == 'monthly'){
-			$month = date("Y-m-d", strtotime("-1 month"));
+			$month = date("Y-m-d", strtotime("-1 months"));
 			$data['title'] = 'Monthly Income/Expenses calculations';
 		}elseif($_GET['filter'] == 'yearly'){
 			$data['title'] = 'Yearly Income/Expenses calculations';
-			$year = date("Y-m-d", strtotime("-1 year"));
+			$year = date("Y-m-d", strtotime("-1 years"));
 		}else{
 
 			// $data['calculations'] = $this->db->select('*,income.id as inc_id,expenses.id as exp_id');
@@ -198,6 +222,11 @@ class Admin extends CI_Controller {
 	}
 
 	public function delete(){
+		echo "hrllo";die;
+		print_r($_POST['dataString']);
+		print_r($dataString);die;
+
+
 		if(isset($_POST['btnsubmit'])){
 			$tbl_id = $this->input->post('tbl_id');
 			$tbl = $this->input->post('tbl');
